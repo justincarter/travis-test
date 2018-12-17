@@ -2,7 +2,7 @@ language: bash
 script:
 - cat sample_travis_output.txt
 after_success:
-- curl -s "https://api.travis-ci.org/v3/job/${TRAVIS_JOB_ID}/log.txt?deansi=true" > travis_output.log
+- sleep 5s && curl -s "https://api.travis-ci.org/v3/job/${TRAVIS_JOB_ID}/log.txt?deansi=true" > travis_output.log
 - echo "----"
 - cat travis_output.log
 - echo "----"
