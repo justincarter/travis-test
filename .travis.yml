@@ -8,4 +8,4 @@ after_success:
 - echo "LUCEE_VERSION = $LUCEE_VERSION"
 # trigger docker image build for this lucee version
 - "export REQUEST_BODY=\"{\\\"request\\\": { \\\"message\\\": \\\"Testing automated build for version $LUCEE_VERSION\\\", \\\"branch\\\":\\\"travis-build-matrix\\\", \\\"config\\\": { \\\"merge_mode\\\": \\\"deep_merge\\\", \\\"env\\\": { \\\"global\\\": { \\\"LUCEE_VERSION\\\": \\\"$LUCEE_VERSION\\\" }}}}}\"\n"
-- "curl -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$REQUEST_BODY\" https://api.travis-ci.org/repo/lucee%2Flucee-dockerfiles/requests\n"
+- "curl -v -s -X POST -H \"Content-Type: application/json\" -H \"Accept: application/json\" -H \"Travis-API-Version: 3\" -H \"Authorization: token $TRAVIS_TOKEN\" -d \"$REQUEST_BODY\" https://api.travis-ci.org/repo/lucee%2Flucee-dockerfiles/requests\n"
