@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # read current job log
 sleep 10s
@@ -9,7 +9,7 @@ LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\
 echo "LUCEE_VERSION = $LUCEE_VERSION\n"
 
 # build the travis request body
-build_request() {
+function build_request {
 cat <<EOF
 {
   "request": {
