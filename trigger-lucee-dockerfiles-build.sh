@@ -10,7 +10,7 @@ echo "LUCEE_VERSION = $LUCEE_VERSION"
 
 # build the travis request body
 function build_request {
-echo "build_request LUCEE_VERSION = $LUCEE_VERSION"
+LUCEE_VERSION=5.2.8.53-SNAPSHOT
 cat <<EOF
 {
   "request": {
