@@ -9,7 +9,7 @@ export LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\
 echo "LUCEE_VERSION = $LUCEE_VERSION\n"
 
 # build the travis request body
-function build_request() {
+function build_request {
 cat <<EOF
 {
   "request": {
