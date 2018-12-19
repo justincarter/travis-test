@@ -12,7 +12,7 @@ function build_request {
 cat <<EOF
 {
   "request": {
-    "message": "Testing automated build for version ${LUCEE_VERSION}",
+    "message": "Automated build for version ${LUCEE_VERSION}",
     "branch":"travis-build-matrix",
     "config": {
       "merge_mode": "deep_merge",
@@ -26,7 +26,6 @@ cat <<EOF
 }
 EOF
 }
-
 REQUEST_BODY=$(build_request)
 
 # trigger the lucee-dockerfiles travis job for this lucee version
