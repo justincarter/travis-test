@@ -5,7 +5,7 @@ sleep 10s
 curl -s "https://api.travis-ci.org/v3/job/${TRAVIS_JOB_ID}/log.txt?deansi=true" > travis_output.log
 
 # get lucee version
-export LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+(.*)?)" travis_output.log)
+LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+(.*)?)" travis_output.log)
 echo "LUCEE_VERSION = $LUCEE_VERSION\n"
 
 # build the travis request body
@@ -13,13 +13,13 @@ function build_request {
 cat <<EOF
 {
   "request": {
-    "message": "Testing automated build for version $1",
+    "message": "Testing automated build for version ${LUCEE_VERSION}",
     "branch":"travis-build-matrix",
     "config": {
       "merge_mode": "deep_merge",
       "env": {
         "global": {
-          "LUCEE_VERSION": "$1"
+          "LUCEE_VERSION": "${LUCEE_VERSION}"
         }
       }
     }
@@ -28,7 +28,7 @@ cat <<EOF
 EOF
 }
 
-REQUEST_BODY=$(build_request $LUCEE_VERSION)
+REQUEST_BODY=$(build_request)
 echo "REQUEST_BODY = $REQUEST_BODY"
 
 # trigger the lucee-dockerfiles travis job for this lucee version
