@@ -5,12 +5,11 @@ sleep 10s
 curl -s "https://api.travis-ci.org/v3/job/${TRAVIS_JOB_ID}/log.txt?deansi=true" > travis_output.log
 
 # get lucee version
-LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+(.*)?)" travis_output.log)
+LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+([-a-zA-Z]*))" travis_output.log)
 echo "LUCEE_VERSION = $LUCEE_VERSION"
 
 # build the travis request body
 function build_request {
-LUCEE_VERSION=5.2.8.53-SNAPSHOT
 cat <<EOF
 {
   "request": {
