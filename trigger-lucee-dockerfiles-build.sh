@@ -6,20 +6,21 @@ curl -s "https://api.travis-ci.org/v3/job/${TRAVIS_JOB_ID}/log.txt?deansi=true" 
 
 # get lucee version
 LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+(.*)?)" travis_output.log)
-echo "LUCEE_VERSION = $LUCEE_VERSION\n"
+echo "LUCEE_VERSION = $LUCEE_VERSION"
 
 # build the travis request body
 function build_request {
+echo "build_request LUCEE_VERSION = $LUCEE_VERSION"
 cat <<EOF
 {
   "request": {
-    "message": "Testing automated build for version ${LUCEE_VERSION}",
+    "message": "Testing automated build for version $LUCEE_VERSION",
     "branch":"travis-build-matrix",
     "config": {
       "merge_mode": "deep_merge",
       "env": {
         "global": {
-          "LUCEE_VERSION": "${LUCEE_VERSION}"
+          "LUCEE_VERSION": "$LUCEE_VERSION"
         }
       }
     }
