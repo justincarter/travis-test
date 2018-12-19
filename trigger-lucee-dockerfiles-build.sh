@@ -10,22 +10,22 @@ echo "LUCEE_VERSION = $LUCEE_VERSION\n"
 
 # build the travis request body
 build_request() {
-  cat <<EOF
-  {
-    "request": {
-      "message": "Testing automated build for version ${LUCEE_VERSION}",
-      "branch":"travis-build-matrix",
-      "config": {
-        "merge_mode": "deep_merge",
-        "env": {
-          "global": {
-            "LUCEE_VERSION": "${LUCEE_VERSION}"
-          }
+cat <<EOF
+{
+  "request": {
+    "message": "Testing automated build for version ${LUCEE_VERSION}",
+    "branch":"travis-build-matrix",
+    "config": {
+      "merge_mode": "deep_merge",
+      "env": {
+        "global": {
+          "LUCEE_VERSION": "${LUCEE_VERSION}"
         }
       }
     }
   }
-  EOF
+}
+EOF
 }
 
 REQUEST_BODY=$(build_request)
