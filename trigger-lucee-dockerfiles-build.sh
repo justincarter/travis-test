@@ -5,7 +5,7 @@ sleep 10s
 curl -s "https://api.travis-ci.org/v3/job/${TRAVIS_JOB_ID}/log.txt?deansi=true" > travis_output.log
 
 # get lucee version
-LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+(.*)?)" travis_output.log)
+export LUCEE_VERSION=$(grep -oP "(?<=\[INFO\] Building Lucee Loader Build )(\d+\.\d+\.\d+\.\d+(.*)?)" travis_output.log)
 echo "LUCEE_VERSION = $LUCEE_VERSION\n"
 
 # build the travis request body
