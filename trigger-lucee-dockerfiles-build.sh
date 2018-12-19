@@ -14,13 +14,13 @@ echo "build_request LUCEE_VERSION = $LUCEE_VERSION"
 cat <<EOF
 {
   "request": {
-    "message": "Testing automated build for version $LUCEE_VERSION",
+    "message": "Testing automated build for version ${LUCEE_VERSION}",
     "branch":"travis-build-matrix",
     "config": {
       "merge_mode": "deep_merge",
       "env": {
         "global": {
-          "LUCEE_VERSION": "$LUCEE_VERSION"
+          "LUCEE_VERSION": "${LUCEE_VERSION}"
         }
       }
     }
